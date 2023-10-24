@@ -8,8 +8,8 @@ const hasRequiredProperties = hasProperties("table_name", "capacity");
 const tableHasReservationId = hasProperties("reservation_id");
 
   async function tableExists(req, res, next) {
-    const tableId = req.params.table_id;
-    const table = await tablesService.readTable(tableId);
+    const table_id = req.params.table_id;
+    const table = await tablesService.readTable(table_id);
 
     if(table) {
         res.locals.table = table;
