@@ -83,7 +83,7 @@ const tableHasReservationId = hasProperties("reservation_id");
 
   
 
-  function TableStillOccupied(req, res, next) {
+  function tableStillOccupied(req, res, next) {
     if(!res.locals.table.occupied) {
         return next({
             status: 400,
@@ -139,7 +139,7 @@ module.exports = {
     ],
     finish: [
         asyncErrorBoundary(tableExists),
-        TableStillOccupied,
+        tableStillOccupied,
         asyncErrorBoundary(finishReservation),
     ],
 };
