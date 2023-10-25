@@ -2,16 +2,15 @@ const reservationsService = require("./reservations.service");
 const hasProperties = require("../errors/hasProperties");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
-const VALID_PROPERTIES = [
+const hasRequiredProperties = hasProperties(
   "first_name",
   "last_name",
   "mobile_number",
   "reservation_date",
   "reservation_time",
   "people"
-];
-
-const hasRequiredProperties = hasProperties(
+);
+const VALID_PROPERTIES = [
   "first_name",
   "last_name",
   "mobile_number",
@@ -22,7 +21,7 @@ const hasRequiredProperties = hasProperties(
   "reservation_id",
   "created_at",
   "updated_at",
-);
+];
 
 function hasOnlyValidProperties(req, res, next) {
   const { data = {} } = req.body;
@@ -39,93 +38,64 @@ function hasOnlyValidProperties(req, res, next) {
   next();
 }
 
-//Create validation to ensure that the phone number is in the correct format.
-/*function validatePhoneNumber(req, res, next) {
-  const { data = {} } = req.body;
-  const phoneNumber = data["phone_number"];
-  
-  // Regular expression for (XXX) XXX-XXXX format
-  const phoneRegex = /^\\d{3}\-\d{3}-\d{4}$/;
-
-  if (!phoneRegex.test(phoneNumber)) {
-    return next({
-      status: 400,
-      message: "Invalid phone number format. Please use the format (XXX) XXX-XXXX.",
-    });
-  }
-
-  next();
-}
-*/
-
-//Create validation to ensure the reservation date is correct and not on a Tuesday.
 function validateDate(req, res, next) {
   const { data = {} } = req.body;
   const date = data["reservation_date"];
+  const time = data["reservation_time"];
+  const formattedDate = new Date(`${date}T${time}`);
   const day = new Date(date).getUTCDay();
-
-  //Reservation cannot be on a Tuesday.
+  if (isNaN(Date.parse(data["reservation_date"]))) {
+    return next({
+      status: 400,
+      message: `Invalid reservation_date`,
+    });
+  }
   if (day === 2) {
     return next({
       status: 400,
-      message: "Invalid reservation date. The restaurant is closed on Tuesdays.",
+      message: `Restaurant is closed on Tuesdays`,
     });
   }
-
-  //Reservation must be in the future.
-  if (new Date(date) <= new Date()) {
+  if (formattedDate <= new Date()) {
     return next({
       status: 400,
-      message: "Invalid reservation date. Reservation date must be in the future.",
+      message: `Reservation must be in the future`,
     });
   }
-
   next();
 }
-
-
-//Create validation to ensure the reservation time is between 10:30am and 9:30pm.
 function validateTime(req, res, next) {
   const { data = {} } = req.body;
   const time = data["reservation_time"];
-  const reservationDateTime = new Date(`1970-01-01T${time}`);
-  const currentTime = new Date();
-
-  //Reservation must be at a future time.
-  if (reservationDateTime <= currentTime) {
-    return next({
+  if (!/^([0-1][0-9]|2[0-3]):([0-5][0-9])$/.test(time)) {
+    next({
       status: 400,
-      message: "Invalid reservation time. Reservation time must be in the future.",
+      message: `Invalid reservation_time`,
     });
   }
-
-  const reservationTime = new Date(`1970-01-01T${time}`).getHours() * 60 + new Date(`1970-01-01T${time}`).getMinutes();
-
-  //Reservation must after 10:30am.
-  if (reservationTime < 630) {
-    return next({
+  const hours = Number(time.split(":")[0]);
+  const minutes = Number(time.split(":")[1]);
+  if (hours < 10 || (hours === 10 && minutes < 30)) {
+    next({
       status: 400,
-      message: "Invalid reservation time. Reservation time is too early (before 10:30 AM).",
+      message: `Reservation must be after 10:30AM`,
     });
   }
-
-  //Reservation must be before 9:30pm.
-  if (reservationTime > 1170) {
-    return next({
+  if (hours > 21 || (hours === 21 && minutes > 30)) {
+    next({
       status: 400,
-      message: "Invalid reservation time. Reservation time is too late (after 9:30 PM).",
+      message: `Reservation must be before 9:30PM`,
     });
   }
-
   next();
 }
 
-function validNumberOfPeople(req, res, next) {
-  const { data = {}} = req.body;
+function hasValidNumber(req, res, next) {
+  const { data = {} } = req.body;
   if (data["people"] === 0 || !Number.isInteger(data["people"])) {
     return next({
       status: 400,
-      message: "Invalid number of people.",
+      message: `Invalid number of people`,
     });
   }
   next();
@@ -152,15 +122,15 @@ function validateReservationStatus(req, res, next) {
   });
 }
 
-function reservationStatus(req, res, next) {
-  const {status} = req.body.data;
-  if(!status || status === "booked") {
-    return next();
+function isBooked(req, res, next) {
+  const { status } = req.body.data;
+  if (status && status !== "booked") {
+    return next({
+      status: 400,
+      message: `Invalid status: ${status}`,
+    });
   }
-  next({
-    status: 400,
-    message: "Status must be booked",
-  })
+  next();
 }
 
 async function reservationExists(req, res, next) {
@@ -225,11 +195,10 @@ module.exports = {
   create: [
     hasOnlyValidProperties,
     hasRequiredProperties,
-    //validatePhoneNumber,
     validateDate,
     validateTime,
-    validNumberOfPeople,
-    reservationStatus,
+    hasValidNumber,
+    isBooked,
     asyncErrorBoundary(createReservation),
   ],
   update: [
@@ -237,7 +206,7 @@ module.exports = {
     hasRequiredProperties,
     validateDate,
     validateTime,
-    validNumberOfPeople,
+    hasRequiredProperties,
     reservationExists,
     validateReservationStatus,
     asyncErrorBoundary(updateReservation),
