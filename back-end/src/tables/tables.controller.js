@@ -17,7 +17,7 @@ const tableHasReservationId = hasProperties("reservation_id");
     }
     next({
         status: 404,
-        message: `Table ${tableId} not found.`,
+        message: `Table ${table_id} not found.`,
     });
   }
 
@@ -65,7 +65,7 @@ const tableHasReservationId = hasProperties("reservation_id");
     if(res.locals.table.occupied) {
         return next({
             status: 400,
-            message: "This table is currently occupied",
+            message: "This table is occupied",
         });
     }
     next();
@@ -87,7 +87,7 @@ const tableHasReservationId = hasProperties("reservation_id");
     if(!res.locals.table.occupied) {
         return next({
             status: 400,
-            message: "This table is not currently occupied",
+            message: "This table is not occupied",
         });
     }
     next();
