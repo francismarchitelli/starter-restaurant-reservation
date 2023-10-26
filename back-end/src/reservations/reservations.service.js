@@ -18,7 +18,10 @@ function list(reservation_date) {
   }
    
   function read(reservation_id) {
-    return knex("reservations").select("*").where({ reservation_id }).first();
+    return knex("reservations")
+    .select("*")
+    .where({ reservation_id })
+    .first();
   }
    
   function create(reservation) {
@@ -28,12 +31,11 @@ function list(reservation_date) {
       .then((createdRecords) => createdRecords[0]);
   }
    
-  function update(updatedRes) {
-    console.log("updatedRes", updatedRes);
+  function update(updatedReservation) {
     return knex("reservations")
       .select("*")
-      .where({ reservation_id: updatedRes.reservation_id })
-      .update(updatedRes, "*")
+      .where({ reservation_id: updatedReservation.reservation_id })
+      .update(updatedReservation, "*")
       .then((createdRecords) => createdRecords[0]);
   }
    
@@ -53,4 +55,3 @@ function list(reservation_date) {
     update,
     updateStatus,
   };
-  
