@@ -9,6 +9,7 @@ import SearchReservation from "../reservations/SearchReservation";
 import EditReservation from "../reservations/EditReservation";
 import SeatReservation from "../reservations/SeatReservation";
 import NewTable from "../tables/NewTable";
+import useQuery from "../utils/useQuery"
 
 /**
  * Defines all the routes for the application.
@@ -18,6 +19,9 @@ import NewTable from "../tables/NewTable";
  * @returns {JSX.Element}
  */
 function Routes() {
+  const query = useQuery();
+  const date = query.get("date");
+  
   return (
     <Switch>
       <Route exact={true} path="/">
@@ -29,27 +33,27 @@ function Routes() {
       </Route>
 
       <Route path="/dashboard">
-        <Dashboard date={today()} />
-      </Route>
-      
-      <Route path="/reservations/new">
-        <NewReservation />
+        <Dashboard date={date || today()} />
       </Route>
 
-      <Route path="/reservations/:reservation_id/edit">
-        <EditReservation />
+      <Route path="/reservations/new">
+        <NewReservation />
       </Route>
 
       <Route path="/reservations/:reservation_id/seat">
         <SeatReservation />
       </Route>
 
-      <Route path="/search">
-        <SearchReservation />
+      <Route path="/reservations/:reservation_id/edit">
+         <EditReservation />
       </Route>
 
       <Route path="/tables/new">
-        <NewTable />
+          <NewTable />
+      </Route>
+
+      <Route path="/search">
+        <SearchReservation />
       </Route>
 
       <Route>
