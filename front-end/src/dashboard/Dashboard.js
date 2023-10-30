@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { listReservations, listTables, finishTable, updateStatus } from "../utils/api";
+import { next, previous, today } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ListTables from "../tables/ListTables";
@@ -57,53 +58,59 @@ function Dashboard({ date }) {
   };
 
   return (
-
-  <main>
-    <h1>Dashboard</h1>
-    <div className="d-md-flex mb-3">
-      <h4 className="mb-0">Reservations for {moment(date).format("dddd MMM DD YYYY")}</h4>
-    </div>
-    <ErrorAlert error={reservationsError} />
-    {JSON.stringify(reservations)}
-
-    <div className="group-row">
-      <button
-        className="item blue"
-        onClick={() =>
-          history.push(`/dashboard?date=${previous(date)}`)
-        }
-      >
-        Previous
-      </button>
-      <button
-        className="item blue"
-        onClick={() => history.push(`/dashboard?date=${today()}`)}
-      >
-        Today
-      </button>
-      <button
-        className="item blue"
-        onClick={() => history.push(`/dashboard?date=${next(date)}`)}
-      >
-        Next
-      </button>
-    </div>
-    <hr />
-    <div id="reservations" className="group-col">
-      <ListAllReservations
-        reservations={reservations}
-        filterResults={filterResults}
-        handleCancel={handleCancel}
-      />
-    </div>
-    <div id="tables" className="item">
-      <h2>Tables</h2>
-      <hr />
-      <ListTables tables={tables} hanldeFinish={hanldeFinish} />
-    </div>
-  </main>
+      <main>
+        <ErrorAlert error={reservationsError} />
+        <div className="group">
+          <div className="item-double">
+            <div className="group">
+              <div className="item-double">
+                <h2>
+                  Reservations for {moment(date).format("dddd MMM DD YYYY")}
+                </h2>
+              </div>
+              <div className="item centered">
+                <div className="group-row">
+                  <button
+                    className="item black"
+                    onClick={() =>
+                      history.push(`/dashboard?date=${previous(date)}`)
+                    }
+                  >
+                    Previous
+                  </button>
+                  <button
+                    className="item black"
+                    onClick={() => history.push(`/dashboard?date=${today()}`)}
+                  >
+                    Today
+                  </button>
+                  <button
+                    className="item black"
+                    onClick={() => history.push(`/dashboard?date=${next(date)}`)}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div id="reservations" className="group-col">
+            <ListAllReservations
+              reservations={reservations}
+              filterResults={filterResults}
+              handleCancel={handleCancel}
+            />
+          </div>
+        </div>
+        <div id="tables" className="item">
+          <h2>Tables</h2>
+          <hr></hr>
+          <ListTables tables={tables} hanldeFinish={hanldeFinish} />
+        </div>
+    </main>
 );
-
 }
 
 export default Dashboard;
+
