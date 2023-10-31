@@ -108,14 +108,9 @@ export async function updateStatus(reservation_id, status) {
   return await fetchJson(url, options);
 }
 
-export async function listTables(signal) {
-  const url = new URL(`${API_BASE_URL}/tables`);
-  try {
-    return await fetchJson(url, {headers, signal}, []);
-  }
-  catch (error) {
-    return error;
-  }
+export async function listTables(params, signal) {
+  const url = `${API_BASE_URL}/tables`;
+  return await fetchJson(url, { headers, signal }, []);
 }
 
 export async function createTable(table, signal) {
