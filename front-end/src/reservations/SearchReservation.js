@@ -47,12 +47,12 @@ export const SearchReservation = () => {
     };
   
     return (
-      <section>
-        <h1>Search Reservation</h1>
-        <div>
+      <div className="col-12 text-center">
+        <h1 >Search Reservation</h1>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="mobile_number">Reservation Mobile Number</label>
+          <div className="form-group alert alert-secondary">
+              <label htmlFor="mobile_number" className="font-weight-bold">Reservation Mobile Number</label>
+              <div>
               <input
                 type="text"
                 id="mobile_number"
@@ -63,12 +63,12 @@ export const SearchReservation = () => {
                 onChange={handleChange}
                 required
               />
+              </div>
             </div>
             <button type="submit" className="btn btn-primary">
               Find Reservation
             </button>
           </form>
-        </div>
         {submitted ? (
           <ListAllReservations
             reservations={reservations}
@@ -78,7 +78,7 @@ export const SearchReservation = () => {
         ) : (
           ""
         )}
-      </section>
+      </div>
     );
   };
   
