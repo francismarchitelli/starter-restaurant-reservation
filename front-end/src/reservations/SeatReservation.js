@@ -57,12 +57,12 @@ export const SeatReservation = () => {
           <div>
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-secondary mx-2"
               onClick={() => history.goBack()}
             >
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mx-2">
               Submit
             </button>
           </div>
