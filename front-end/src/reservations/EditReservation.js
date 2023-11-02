@@ -54,14 +54,14 @@ export const EditReservation = () => {
   };
 
   return (
-    <section>
+    <div className="container-fluid">
       <h1>Edit Reservation</h1>
       <ReservationForm
         reservation={reservation}
         changeHandler={handleReservationChange}
         submitHandler={handleSubmit}
       />
-    </section>
+    </div>
   );
 };
 
