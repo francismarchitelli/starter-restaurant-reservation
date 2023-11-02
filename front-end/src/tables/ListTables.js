@@ -23,10 +23,10 @@ function ListTables({ tables, handleFinish }) {
                 </div>
               </div>
             </div>
-            <div className="item">
+            <div>
               {table.occupied ? (
                 <button
-                  className="finish"
+                className="btn btn-primary"
                   data-table-id-finish={table.table_id}
                   onClick={() =>  handleFinish(table.table_id)}
                 >
