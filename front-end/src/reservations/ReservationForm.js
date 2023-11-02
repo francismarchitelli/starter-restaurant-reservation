@@ -5,45 +5,54 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="first_name">First Name</label>
+          <div className="form-group alert alert-secondary">
+            <label htmlFor="first_name" className="font-weight-bold">First Name</label>
+            <div>
             <input
               type="text"
               id="first_name"
               name="first_name"
-              placeholder="Please Enter Your First Name"
+              placeholder="Enter Your First Name"
               value={reservation.first_name}
               onChange={handleReservationChange}
               required
             />
           </div>
-          <div>
-            <label htmlFor="last_name">Last Name</label>
+          </div>
+          <div className="form-group alert alert-secondary">
+            <label htmlFor="last_name" className="font-weight-bold">Last Name</label>
+            <div>
             <input
               type="text"
               id="last_name"
               name="last_name"
-              placeholder="Please Enter Your Last Name"
+              placeholder="Enter Your Last Name"
               value={reservation.last_name}
               onChange={handleReservationChange}
               required
             />
+            </div>
           </div>
-          <div>
-            <label htmlFor="mobile_number">Mobile Number</label>
+          <div className="form-group alert alert-secondary">
+            <label htmlFor="mobile_number" className="font-weight-bold">Mobile Number</label>
+            <div>
             <input
               type="text"
               id="mobile_number"
               name="mobile_number"
+              placeholder="xxx-xxx-xxxx"
+              max="12"
               value={reservation.mobile_number}
               onChange={handleReservationChange}
               required
             />
+            </div>
           </div>
-          <div>
-            <label htmlFor="reservation_date">Reservation Date</label>
+          <div className="form-group alert alert-secondary">
+            <label htmlFor="reservation_date" className="font-weight-bold">Reservation Date</label>
+            <div>
             <input
               type="date"
               id="reservation_date"
@@ -54,9 +63,11 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
               onChange={handleReservationChange}
               required
             />
+            </div>
           </div>
-          <div>
-            <label htmlFor="reservation_time">Reservation Time</label>
+          <div className="form-group alert alert-secondary">
+            <label htmlFor="reservation_time" className="font-weight-bold">Reservation Time</label>
+            <div>
             <input
               type="time"
               id="reservation_time"
@@ -67,9 +78,11 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
               onChange={handleReservationChange}
               required
             />
+            </div>
           </div>
-          <div>
-            <label htmlFor="people">Number of People</label>
+          <div className="form-group alert alert-secondary">
+            <label htmlFor="people" className="font-weight-bold">Number of People</label>
+            <div>
             <input
               type="number"
               id="people"
@@ -79,12 +92,13 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
               onChange={handleReservationChange}
               required
             />
+            </div>
           </div>
           <div>
-            <button type="button" className="btn btn-secondary" onClick={() => history.goBack()}>
+            <button type="button" className="btn btn-secondary mx-2" onClick={() => history.goBack()}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mx-2">
               Submit
             </button>
           </div>
