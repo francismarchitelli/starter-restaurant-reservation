@@ -41,14 +41,14 @@ export const NewReservation = () => {
   };
 
   return (
-    <section>
-      <h1>Create a Reservation</h1>
+    <div className="container-fluid">
+      <h1>Create A New Reservation</h1>
       <ReservationForm
         reservation={reservation}
         changeHandler={handleReservationChange}
         submitHandler={handleSubmit}
       />
-    </section>
+    </div>
   );
 };
 
