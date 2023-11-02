@@ -36,11 +36,12 @@ export const NewTable = () => {
   };
 
   return (
-    <section>
+    <div>
       <h1>Create a Table</h1>
       <form onSubmit={handleSubmit}>
           <div className="form-group alert alert-secondary">
-            <label htmlFor="table_name">Table Name</label>
+            <label htmlFor="table_name" className="font-weight-bold">Table Name</label>
+            <div>
             <input
               type="text"
               id="table_name"
@@ -50,9 +51,11 @@ export const NewTable = () => {
               onChange={handleTableChange}
               required
             />
+            </div>
           </div>
           <div className="form-group alert alert-secondary">
-            <label htmlFor="capacity">Capacity</label>
+            <label htmlFor="capacity" className="font-weight-bold">Capacity</label>
+            <div>
             <input
               type="number"
               id="capacity"
@@ -62,17 +65,18 @@ export const NewTable = () => {
               onChange={handleTableChange}
               required
             />
+            </div>
           </div>
           <div>
-            <button className="btn btn-secondary" onClick={() => history.goBack()}>
+            <button className="btn btn-secondary mx-2" onClick={() => history.goBack()}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mx-2">
               Submit
             </button>
           </div>
       </form>
-    </section>
+    </div>
   );
 };
 
