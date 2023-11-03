@@ -45,7 +45,7 @@ export const NewReservation = () => {
       <h1>Create A New Reservation</h1>
       <ReservationForm
         reservation={reservation}
-        changeHandler={handleReservationChange}
+        handleReservationChange={handleReservationChange}
         submitHandler={handleSubmit}
       />
     </div>
