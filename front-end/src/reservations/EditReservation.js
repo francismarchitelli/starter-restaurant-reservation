@@ -58,8 +58,8 @@ export const EditReservation = () => {
       <h1>Edit Reservation</h1>
       <ReservationForm
         reservation={reservation}
-        changeHandler={handleReservationChange}
-        submitHandler={handleSubmit}
+        handleReservationChange={handleReservationChange}
+        handleSubmit={handleSubmit}
       />
     </div>
   );
