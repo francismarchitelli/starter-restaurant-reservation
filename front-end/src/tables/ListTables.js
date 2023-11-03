@@ -6,8 +6,8 @@ function ListTables({ tables, handleFinish }) {
     <div>
       {tables.map((table) => (
         <div className="table" key={table.table_id}>
-          <div>
-            <div className="form-group alert alert-primary text-dark">
+          <div className="form-group alert alert-primary text-dark">
+            <div>
               <div>
                 <h4>Table {table.table_name}</h4>
                 <div>
