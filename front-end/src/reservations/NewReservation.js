@@ -43,11 +43,15 @@ export const NewReservation = () => {
   return (
     <div className="container-fluid">
       <h1>Create A New Reservation</h1>
+      <div className="row">
+        <div className="col-md-9">
       <ReservationForm
         reservation={reservation}
         handleReservationChange={handleReservationChange}
-        submitHandler={handleSubmit}
+        handleSubmit={handleSubmit}
       />
+      </div>
+      </div>
     </div>
   );
 };
