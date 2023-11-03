@@ -28,10 +28,10 @@ export const ListAllReservations = ({
         return filterResults && checkReservationStatus(reservation) ? (
           ""
         ) : (
-          <div className="reservation" key={reservation.reservation_id}>
-            <div className="group">
-              <div className="item">
-                <div className="group-col">
+          <div className="form-group alert alert-secondary" key={reservation.reservation_id}>
+            <div>
+              <div>
+                <div>
                   <div>
                     <h4>
                       {reservation.first_name} {reservation.last_name}{" "}
@@ -43,34 +43,34 @@ export const ListAllReservations = ({
                       {formatTime(reservation.reservation_time)}
                     </h5>
                     <p>
-                      &nbsp; / &nbsp;mobile : {reservation.mobile_number}
+                      &nbsp; &nbsp;<b>Mobile:</b> {reservation.mobile_number}
                     </p>
                     <p
                       data-reservation-id-status={reservation.reservation_id}
                     >
-                      &nbsp; / &nbsp;<i>{reservation.status}</i>
+                     &nbsp; &nbsp; <b>Status:</b> <i>{reservation.status}</i>
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="item">
+              <div>
                 {reservation.status === "booked" ? (
                   <div className="group-reverse">
                     <Link
-                      className="item button-link"
+                      className="btn btn-primary mx-2 button-link"
                       to={`/reservations/${reservation.reservation_id}/seat`}
                     >
                       Seat
                     </Link>
                     <Link
-                      className="item button-link"
+                      className="btn btn-secondary mx-2 button-link"
                       to={`/reservations/${reservation.reservation_id}/edit`}
                     >
                       Edit
                     </Link>
                     <button
                       type="button"
-                      className="item black"
+                      className="btn btn-danger mx-2 text-white"
                       data-reservation-id-cancel={reservation.reservation_id}
                       value={reservation.reservation_id}
                       onClick={handleCancel}
@@ -88,7 +88,7 @@ export const ListAllReservations = ({
       });
     } else {
       return (
-        <div className="group">
+        <div>
           <h4>No reservations found</h4>
         </div>
       );
