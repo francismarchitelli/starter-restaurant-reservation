@@ -61,15 +61,15 @@ function Dashboard({ date }) {
       <main>
         <ErrorAlert error={reservationsError} />
         <div className="container-fluid col-12 text-center">
-          <div className="item-double">
-            <div className="group">
-              <div className="item-double">
+          <div>
+            <div>
+              <div>
                 <h2>
                   Reservations for {moment(date).format("dddd MMM DD YYYY")}
                 </h2>
               </div>
               <div className="centered">
-                <div className="group-row">
+                <div>
                   <button
                     className="black mx-1"
                     onClick={() =>
@@ -95,7 +95,7 @@ function Dashboard({ date }) {
             </div>
           </div>
           <hr />
-          <div id="reservations" className="group-col">
+          <div id="reservations" className="col-12 text-center">
             <ListAllReservations
               reservations={reservations}
               filterResults={filterResults}
@@ -103,9 +103,9 @@ function Dashboard({ date }) {
             />
           </div>
         </div>
+        <hr></hr>
         <div id="tables" className="col-12 text-center">
-          <h2>Tables</h2>
-          <hr></hr>
+          <h2><u>Tables</u></h2>
           <ListTables tables={tables} hanldeFinish={hanldeFinish} />
         </div>
     </main>
