@@ -3,19 +3,18 @@ import React from "react";
 function ListTables({ tables, handleFinish }) {
   
   return (
-    <div className="group-col">
+    <div>
       {tables.map((table) => (
         <div className="table" key={table.table_id}>
-          <div className="group-row">
-            <div className="item-quad">
-              <div className="group-col no-gap">
-                <h3 className="item inline">Table {table.table_name}</h3>
+          <div>
+            <div className="form-group alert alert-primary text-dark">
+              <div>
+                <h4>Table {table.table_name}</h4>
                 <div>
-                  <h5 className="item magenta inline">
+                  <h5>
                     {table.capacity} seats{" "}
                   </h5>
                   <p
-                    className="item inline"
                     data-table-id-status={table.table_id}
                   >
                      /  {table.occupied ? "occupied" : "free"}
@@ -28,7 +27,7 @@ function ListTables({ tables, handleFinish }) {
                 <button
                 className="btn btn-primary"
                   data-table-id-finish={table.table_id}
-                  onClick={() =>  handleFinish(table.table_id)}
+                  onClick={() => handleFinish(table.table_id)}
                 >
                   Finish
                 </button>
