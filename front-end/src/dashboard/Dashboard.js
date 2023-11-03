@@ -32,7 +32,7 @@ function Dashboard({ date }) {
     return () => abortController.abort();
   }
 
-  async function hanldeFinish(table_id) {
+  async function handleFinish(table_id) {
     const abortController = new AbortController();
     const result = window.confirm(
       "Are you sure this table is ready to seat new guests? This cannot be undone."
@@ -106,7 +106,7 @@ function Dashboard({ date }) {
         <hr></hr>
         <div id="tables" className="col-12 text-center">
           <h2><u>Tables</u></h2>
-          <ListTables tables={tables} hanldeFinish={hanldeFinish} />
+          <ListTables tables={tables} handleFinish={handleFinish} />
         </div>
     </main>
 );
