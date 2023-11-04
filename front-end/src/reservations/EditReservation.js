@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { readReservation, updateReservation } from "../utils/api";
 import ReservationForm from "./ReservationForm";
+import ErrorAlert from "../layout/ErrorAlert";
 
 export const EditReservation = () => {
   const history = useHistory();
@@ -15,12 +16,14 @@ export const EditReservation = () => {
   };
 
   const [reservation, setReservation] = useState({...initialState,});
+  const [error, setError] = useState(null);
   const { reservation_id } = useParams();
 
   useEffect(() => {
     const abortController = new AbortController();
     readReservation(reservation_id, abortController.signal)
       .then(setReservation)
+      .catch(setError);
 
     return () => abortController.abort();
   }, [reservation_id]);
@@ -46,8 +49,8 @@ export const EditReservation = () => {
     try {
       await updateReservation(reservation, abortController.signal);
       history.push(`/dashboard?date=${reservation.reservation_date}`);
-    } catch (error) {
-      return error;
+    } catch (err) {
+      setError(err);
     }
 
     return () => abortController.abort();
@@ -56,6 +59,7 @@ export const EditReservation = () => {
   return (
     <div className="container-fluid">
       <h1>Edit Reservation</h1>
+      <ErrorAlert error={error} />
       <ReservationForm
         reservation={reservation}
         handleReservationChange={handleReservationChange}
