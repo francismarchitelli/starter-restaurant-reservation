@@ -60,8 +60,7 @@ function Dashboard({ date }) {
   return (
       <main>
         <ErrorAlert error={reservationsError} />
-        <div className="container-fluid col-12 text-center">
-          <div>
+          <div className="container-fluid col-12 text-center">
             <div>
               <div>
                 <h1>
@@ -95,18 +94,21 @@ function Dashboard({ date }) {
             </div>
           </div>
           <hr />
-          <div id="reservations" className="col-12 text-center">
+        <div className="container">
+          <div className="row">
+          <div id="reservations" className="col text-center">
+            <h1><u>Reservations</u></h1>
             <ListAllReservations
               reservations={reservations}
               filterResults={filterResults}
               handleCancel={handleCancel}
             />
           </div>
-        </div>
-        <hr></hr>
-        <div id="tables" className="col-12 text-center">
+        <div id="tables" className="col text-center">
           <h1><u>Tables</u></h1>
           <ListTables tables={tables} handleFinish={handleFinish} />
+        </div>
+        </div>
         </div>
     </main>
 );
