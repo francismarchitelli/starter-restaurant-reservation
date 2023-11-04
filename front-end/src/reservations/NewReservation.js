@@ -46,7 +46,7 @@ export const NewReservation = () => {
     <div className="container-fluid">
       <h1>Create A New Reservation</h1>
       <div className="row">
-        <div className="col-md-9">
+        <div className="col-12">
       <ErrorAlert error={error} />
       <ReservationForm
         reservation={reservation}
