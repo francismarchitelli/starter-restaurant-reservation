@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createTable } from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
 
 export const NewTable = () => {
   const history = useHistory();
@@ -10,6 +11,7 @@ export const NewTable = () => {
   };
 
   const [table, setTable] = useState({...initialState,});
+  const [error, setError] = useState(null);
 
   const handleTableChange = (e) => {
     if (e.target.name === "capacity") {
@@ -31,6 +33,7 @@ export const NewTable = () => {
 
     createTable(table, abortController.signal)
       .then(history.push(`/dashboard`))
+      .catch(setError);
 
     return () => abortController.abort();
   };
@@ -38,6 +41,7 @@ export const NewTable = () => {
   return (
     <div>
       <h1>Create a Table</h1>
+      <ErrorAlert error={error} />
       <form onSubmit={handleSubmit}>
           <div className="form-group alert alert-secondary">
             <label htmlFor="table_name" className="font-weight-bold">Table Name</label>
