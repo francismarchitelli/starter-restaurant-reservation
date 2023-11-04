@@ -73,7 +73,7 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
               id="reservation_time"
               name="reservation_time"
               placeholder="HH:MM"
-              pattern="[0-9]{2}:[0-9]{2}"
+              pattern="[0-9]{2}:[0-9]{2}:{[0-0]{2}"
               value={reservation.reservation_time}
               onChange={handleReservationChange}
               required
