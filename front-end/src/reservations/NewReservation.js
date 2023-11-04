@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createReservation } from "../utils/api";
 import ReservationForm from "./ReservationForm";
+import ErrorAlert from "../layout/ErrorAlert";
 
 export const NewReservation = () => {
   const history = useHistory();
@@ -15,6 +16,7 @@ export const NewReservation = () => {
   };
 
   const [reservation, setReservation] = useState({...initialState,});
+  const [error, setError] = useState(null);
 
   const handleReservationChange = (e) => {
     if (e.target.name === "people") {
@@ -33,8 +35,8 @@ export const NewReservation = () => {
     try {
       await createReservation(reservation, abortController.signal);
       history.push(`/dashboard?date=${reservation.reservation_date}`);
-    } catch (error) {
-        return error;
+    } catch (err) {
+        setError(err);
     }
 
     return () => abortController.abort();
@@ -45,6 +47,7 @@ export const NewReservation = () => {
       <h1>Create A New Reservation</h1>
       <div className="row">
         <div className="col-md-9">
+      <ErrorAlert error={error} />
       <ReservationForm
         reservation={reservation}
         handleReservationChange={handleReservationChange}
