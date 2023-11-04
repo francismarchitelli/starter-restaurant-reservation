@@ -64,9 +64,9 @@ function Dashboard({ date }) {
           <div>
             <div>
               <div>
-                <h2>
+                <h1>
                   Reservations for {moment(date).format("dddd MMM DD YYYY")}
-                </h2>
+                </h1>
               </div>
               <div className="centered">
                 <div>
@@ -105,7 +105,7 @@ function Dashboard({ date }) {
         </div>
         <hr></hr>
         <div id="tables" className="col-12 text-center">
-          <h2><u>Tables</u></h2>
+          <h1><u>Tables</u></h1>
           <ListTables tables={tables} handleFinish={handleFinish} />
         </div>
     </main>
