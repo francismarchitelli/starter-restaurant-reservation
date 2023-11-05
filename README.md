@@ -65,29 +65,21 @@ Here the user can edit reservation info if needed.
 
 ## Backend
 
-The Product Manager has already created the user stories for _Periodic Tables_. Each of the user stories is listed below, and your Product Manager wants them to be implemented in the order in which they are listed. Another developer has already written the tests for each of the user stories so that you don't have to.
+Below is a summary of the API used in the application
 
-Although the user stories do not say anything about deployment, you should consider deploying early and often. You may even decide to deploy before adding any features. We recommend that you use Render to deploy this project.
+| Request Type | Path                          | Description                                                   |
+| GET          | /reservations                 | Returns a list off all reservations ordered by time.          |
+| POST         | /reservations                 | Creates a new reservation                                     |
+| GET          | /reservations/:reservation_id | Returns a specific reservation.                               |
+| PUT          | /reservations/:reservation_id | Updates a specific reservation                                |
+| GET          | /reservations?date=YYYY-MM-DD | Returns all reservations for a specific date ordered by time. |
+| GET          | /tables                       | Returns a list of all tables.                                 |
+| POST         | /tables                       | Creates a new table.                                          |
+| PUT          | /tables/:table_id/seat        | Updates a table by assigning a reservation to it.             |
+| DELETE       | /tables/:table_id/seat        | Removes a reservation from a table.                           |
 
-### US-01 Create and list reservations
 
-As a restaurant manager<br/>
-I want to create a new reservation when a customer calls<br/>
-so that I know how many customers will arrive at the restaurant on a given day.
 
-#### Acceptance Criteria
-
-1. The `/reservations/new` page will
-   - have the following required and not-nullable fields:
-     - First name: `<input name="first_name" />`
-     - Last name: `<input name="last_name" />`
-     - Mobile number: `<input name="mobile_number" />`
-     - Date of reservation: `<input name="reservation_date" />`
-     - Time of reservation: `<input name="reservation_time" />`
-     - Number of people in the party, which must be at least 1 person. `<input name="people" />`
-   - display a `Submit` button that, when clicked, saves the new reservation, then displays the `/dashboard` page for the date of the new reservation
-   - display a `Cancel` button that, when clicked, returns the user to the previous page
-   - display any error messages returned from the API
 1. The `/dashboard` page will
    - list all reservations for one date only. (E.g. if the URL is `/dashboard?date=2035-12-30` then send a GET to `/reservations?date=2035-12-30` to list the reservations for that date). The date is defaulted to today, and the reservations are sorted by time.
    - display next, previous, and today buttons that allow the user to see reservations on other dates
