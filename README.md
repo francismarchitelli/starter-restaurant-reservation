@@ -1,6 +1,6 @@
 # Periodic Tables Restaurant Reservation System
 
-The Peridic Tables Restaurant Reservation System App is a full-stack application created to aid in booking restaurant reservation, mangage the reservations, and manage the tables.
+The Peridic Tables Restaurant Reservation System App is a full-stack application created to book restaurant reservations, mangage the reservations, and manage the tables.
 
 ## Technologies Used
 
@@ -10,59 +10,60 @@ The Application makes use of Javascript, React, Bootstrap, CSS, Express.js, Post
 
 1. Fork and clone the repository.
 2. Run npm install.
-3. Run nom run start to start the application.
+3. Run npm run start to start the application.
 
 
 ## Front End
 
-The Periodic Tables Restaurant Reservation System was created using React, and Bootstrap.
+The Periodic Tables Restaurant Reservation System Frontend was created using React, CSS, and Bootstrap.
 
 ### Dashboard
 
 When you open the application you should be taken to the main dashboard. 
 
 * Here the user has the ability to see existing reservations for the current date and check other dates by using the "Previous", "Today", and "Next" buttons at the top of the page.
-* On the left there is a Menu section that allows the user to navigate to other pages. These pages will be talked about later.
-* The list of reservations will be seen vertically on the left. Here the user also has the option to "seat" a reservation, "cancel" a reservation, and "edit" a reservation.
+* On the left there is a Menu section that allows the user to navigate to other pages.
+* The list of reservations will be seen on the left. Here the user also has the option to "seat" a reservation, "cancel" a reservation, and "edit" a reservation.
 * The list of tables will be seen on the right. Here the user can "finish" a reseration once it is complete.
 
 <img width="941" alt="dashboard" src="https://github.com/francismarchitelli/starter-restaurant-reservation/assets/127345349/07913197-2521-4579-aeb2-f903d4770f0b">
 
 
-Since tests take time to run, you might want to consider running only the tests for the user story you're working on at any given time.
+### New Reservation
 
-Once you have all user stories complete, you can run all the tests using the following commands:
+The New Reservation page allows the user to create a new reservation. Here the reservation can be inputed into the form and submitted or canceled.
 
-- `npm test` runs _all_ tests.
-- `npm run test:backend` runs _all_ backend tests.
-- `npm run test:frontend` runs _all_ frontend tests.
-- `npm run test:e2e` runs only the end-to-end tests.
+<img width="890" alt="New Reservation" src="https://github.com/francismarchitelli/starter-restaurant-reservation/assets/127345349/4a94ae05-8b72-452c-a5e1-630440e2c57e">
 
-If you would like a reminder of which npm scripts are available, run `npm run` to see a list of available commands.
+### Search
 
-Note that the logging level for the backend is set to `warn` when running tests and `info` otherwise.
+On the search page the user can search for a specific reservation by inputing the reservation phone number into the search bar.
 
-> **Note**: After running `npm test`, `npm run test:X`, or `npm run test:e2e` you might see something like the following in the output: `[start:frontend] Assertion failed:`. This is not a failure, it is just the frontend project getting shutdown automatically.
+<img width="946" alt="search reservation" src="https://github.com/francismarchitelli/starter-restaurant-reservation/assets/127345349/b17b5592-0eff-4a26-861c-642d4b261ef2">
 
-> **Note**: If you are getting a `unable to resolve dependency tree` error when running the frontend tests, run the following command: `npm install --force --prefix front-end`. This will allow you to run the frontend tests.
+### New Table
 
-> **Hint**: If you stop the tests before they finish, it can leave the test database in an unusual state causing the tests to fail unexpectedly the next time you run them. If this happens, delete all tables in the test database, including the `knex_*` tables, and try the tests again.
+Here the restaurant manager has the ability to create a new table that can be seated by a reservation. 
 
-### Frontend test timeout failure
+<img width="950" alt="New Table" src="https://github.com/francismarchitelli/starter-restaurant-reservation/assets/127345349/292dd5c0-6e4d-4cd7-918f-f7cfd33968cd">
 
-Running the frontend tests on a resource constrained computer may result in timeout failures.
+### Seat Reservation
 
-If you believe your implementation is correct, but needs a bit more time to finish, you can update the `testTimeout` value in `front-end/e2e/jest.config.js`. A value of 10000 or even 12000 will give each test a few more seconds to complete.
+The Seat Reservation page is reach by clicking on the "seat" button under a listed reservation on the dashboard. 
+Here the manager can seat the reservation by choosing the appropraite table in the drop down menu.
 
-#### Screenshots
+<img width="953" alt="Seat Reservation" src="https://github.com/francismarchitelli/starter-restaurant-reservation/assets/127345349/1976a1e1-8ce2-41e7-95c6-fad9640d8731">
 
-To help you better understand what might be happening during the end-to-end tests, screenshots are taken at various points in the test.
+### Edit Reservation
 
-The screenshots are saved in `front-end/.screenshots` and you can review them after running the end-to-end tests.
+The Edit Reservation page is reached by clicking the "edit" button under a listed reservation on the dashboard.
+Here the user can edit reservation info if needed.
 
-You can use the screenshots to debug your code by rendering additional information on the screen.
+<img width="896" alt="Edit Reservation" src="https://github.com/francismarchitelli/starter-restaurant-reservation/assets/127345349/04901db7-5b33-4f7d-8b9e-0f651592d06e">
 
-## Product Backlog
+
+
+## Backend
 
 The Product Manager has already created the user stories for _Periodic Tables_. Each of the user stories is listed below, and your Product Manager wants them to be implemented in the order in which they are listed. Another developer has already written the tests for each of the user stories so that you don't have to.
 
