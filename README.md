@@ -1,6 +1,6 @@
 # Periodic Tables Restaurant Reservation System
 
-> The Peridic Tables Restaurant Reservation System App is a full-stack application created to aid in booking restaurant reservation, mangage the reservations, and manage the tables.
+The Peridic Tables Restaurant Reservation System App is a full-stack application created to aid in booking restaurant reservation, mangage the reservations, and manage the tables.
 
 There are no user stories for deployment: it is expected that you will deploy the application to production after you finish a user story.
 
