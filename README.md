@@ -1,8 +1,6 @@
-# Capstone: Restaurant Reservation System
+# Periodic Tables Restaurant Reservation System
 
-> You have been hired as a full stack developer at _Periodic Tables_, a startup that is creating a reservation system for fine dining restaurants.
-> The software is used only by restaurant personnel when a customer calls to request a reservation.
-> At this point, the customers will not access the system online.
+> The Peridic Tables Restaurant Reservation System App is a full-stack application created to aid in booking restaurant reservation, mangage the reservations, and manage the tables.
 
 There are no user stories for deployment: it is expected that you will deploy the application to production after you finish a user story.
 
