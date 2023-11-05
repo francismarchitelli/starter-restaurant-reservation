@@ -68,6 +68,7 @@ Here the user can edit reservation info if needed.
 Below is a summary of the API used in the application
 
 | Request Type | Path                          | Description                                                   |
+| ------------ | ----------------------------- | ------------------------------------------------------------- |
 | GET          | /reservations                 | Returns a list off all reservations ordered by time.          |
 | POST         | /reservations                 | Creates a new reservation                                     |
 | GET          | /reservations/:reservation_id | Returns a specific reservation.                               |
