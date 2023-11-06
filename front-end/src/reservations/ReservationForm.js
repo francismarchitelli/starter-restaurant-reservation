@@ -39,7 +39,7 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
             <label htmlFor="mobile_number" className="font-weight-bold">Mobile Number</label>
             <div>
             <input
-              type="text"
+              type="number"
               id="mobile_number"
               name="mobile_number"
               placeholder="xxx-xxx-xxxx"
