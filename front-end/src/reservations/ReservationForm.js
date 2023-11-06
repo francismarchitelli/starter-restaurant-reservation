@@ -43,7 +43,6 @@ function ReservationForm({reservation, handleReservationChange, handleSubmit}) {
               id="mobile_number"
               name="mobile_number"
               placeholder="xxx-xxx-xxxx"
-              max="12"
               value={reservation.mobile_number}
               onChange={handleReservationChange}
               required
